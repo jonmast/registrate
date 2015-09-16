@@ -1,15 +1,11 @@
 FactoryGirl.define do
   factory :animal do
-    customer nil
-sire nil
-dam nil
-registration_id "MyString"
-birth_date "2015-09-16"
-gender "MyString"
-birth_type 1
-artificial_insemination false
-embryo_transfer "MyString"
-percentage 1
+    registration_id { Faker::Internet.slug }
+    birth_date { Faker::Date.between(10.years.ago, Date.today) }
+    gender { %w(M F).sample }
+    birth_type { (0..5).to_a.sample }
+    artificial_insemination false
+    embryo_transfer 'N'
+    percentage 100
   end
-
 end
