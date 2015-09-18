@@ -43,13 +43,4 @@ RSpec.feature 'ShowAnimals' do
     end
     expect(page).to_not have_link(current_animal.registration_id, href: animal_path(current_animal))
   end
-
-  def create_parents_tree(animal, depth)
-    return if depth == 0
-    depth -= 1
-    animal.sire = create_parents_tree(FactoryGirl.build(:ram), depth)
-    animal.dam = create_parents_tree(FactoryGirl.build(:ewe), depth)
-    animal.save!
-    animal
-  end
 end

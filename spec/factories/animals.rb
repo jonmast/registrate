@@ -1,3 +1,4 @@
+require 'faker'
 FactoryGirl.define do
   factory :animal do
     registration_id { Faker::Internet.slug }
@@ -15,5 +16,17 @@ FactoryGirl.define do
     factory :ewe do
       gender 'F'
     end
+
+    factory :animal_with_parents do
+      after(:create) { |animal| create_parents_tree(animal, 5) }
+    end
   end
+end
+def create_parents_tree(animal, depth)
+  return if depth == 0
+  depth -= 1
+  animal.sire = create_parents_tree(FactoryGirl.build(:ram), depth)
+  animal.dam = create_parents_tree(FactoryGirl.build(:ewe), depth)
+  animal.save!
+  animal
 end
