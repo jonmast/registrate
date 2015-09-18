@@ -14,4 +14,26 @@ module AnimalsHelper
       pluralize(years, 'year')
     end
   end
+
+  def ancestry_tree(animal, max_depth = 3)
+    content_tag :li, class: animal.gender do
+      concat(link_to animal.registration_id, animal)
+      unless max_depth == 0
+        if animal.sire
+          sire_tree = content_tag 'ul' do
+            ancestry_tree(animal.sire, max_depth - 1)
+          end
+        end
+
+        if animal.dam
+          dam_tree = content_tag 'ul' do
+            ancestry_tree(animal.dam, max_depth - 1)
+          end
+        end
+
+        concat(sire_tree)
+        concat(dam_tree)
+      end
+    end
+  end
 end

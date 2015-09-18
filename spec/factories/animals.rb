@@ -7,5 +7,13 @@ FactoryGirl.define do
     artificial_insemination false
     embryo_transfer 'N'
     percentage 100
+
+    factory :ram do
+      gender 'M'
+    end
+
+    factory :ewe do
+      gender 'F'
+    end
   end
 end

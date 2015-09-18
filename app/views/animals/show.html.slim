@@ -20,3 +20,12 @@ dl#attributes.dl-horizontal
 
   dt Percentage
   dd= number_to_percentage(@animal.percentage, precision: 2, strip_insignificant_zeros: true)
+
+  - if @animal.progeny.any?
+    dt Progeny
+    dd
+      - @animal.progeny.each do |prog|
+        = link_to prog.registration_id, prog
+
+h2 Ancestry
+#ancestors= ancestry_tree(@animal)
