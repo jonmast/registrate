@@ -1,0 +1,22 @@
+dl#attributes.dl-horizontal
+  dt Registration Id
+  dd= @animal.registration_id
+
+  dt Birth Date
+  dd #{@animal.birth_date} (#{age_in_words(@animal.birth_date)} old)
+
+  dt Gender
+  dd= @animal.gender
+
+  dt Birth Type
+  dd #{@animal[:birth_type]} - #{@animal.birth_type}
+
+  - unless @animal.embryo_transfer == 'None'
+    dt Embryo Transfer Type
+    dd= @animal.embryo_transfer
+
+  dt Artificial Insemination
+  dd= @animal.artificial_insemination? ? 'yes' : 'no'
+
+  dt Percentage
+  dd= number_to_percentage(@animal.percentage, precision: 2, strip_insignificant_zeros: true)
