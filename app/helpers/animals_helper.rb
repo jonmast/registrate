@@ -19,20 +19,11 @@ module AnimalsHelper
     content_tag :li, class: animal.gender do
       concat(link_to animal.registration_id, animal)
       unless max_depth == 0
-        if animal.sire
-          sire_tree = content_tag 'ul' do
-            ancestry_tree(animal.sire, max_depth - 1)
-          end
+        parent_tree = content_tag 'ul' do
+          concat(ancestry_tree(animal.sire, max_depth - 1)) if animal.sire
+          concat(ancestry_tree(animal.dam, max_depth - 1)) if animal.dam
         end
-
-        if animal.dam
-          dam_tree = content_tag 'ul' do
-            ancestry_tree(animal.dam, max_depth - 1)
-          end
-        end
-
-        concat(sire_tree)
-        concat(dam_tree)
+        concat(parent_tree)
       end
     end
   end
