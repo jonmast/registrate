@@ -1,0 +1,16 @@
+doctype html
+html
+  head
+    title Registrate
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    nav.navbar.navbar-default
+      .container-fluid
+        .navbar-header= link_to 'Registrate', '/', class: 'navbar-brand'
+        form.navbar-form.navbar-right[role="search"]
+          .form-group
+            input.form-control[type="text" placeholder="Search"]
+          button.btn.btn-default[type="submit"] Submit
+    = yield
