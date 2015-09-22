@@ -11,7 +11,6 @@ class AnimalsController < ApplicationController
     @animal = Animal.new(animal_params)
     @animal.add_sire(params[:animal][:sire])
     @animal.add_dam(params[:animal][:dam])
-    @animal.generate_id
     if @animal.save
       redirect_to animal_path(@animal)
     else

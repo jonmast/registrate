@@ -17,9 +17,7 @@ class Animal < ActiveRecord::Base
             :birth_type,
             :embryo_transfer,
             :percentage,
-            :registration_id,
             presence: true
-  validates :registration_id, uniqueness: true
   validates :percentage, inclusion: (1..100)
   validate :existence_of_sire
   validate :existence_of_dam
@@ -32,9 +30,14 @@ class Animal < ActiveRecord::Base
     end
   end
 
+  def registration_id
+    "#{gender_abbreviation}#{id.to_s.rjust(6, '0')}"
+  end
+
   def add_sire(reg_id)
     return if reg_id.blank?
-    sire = Animal.find_by(registration_id: reg_id)
+    id = id_from_reg_id(reg_id)
+    sire = Animal.find_by(id: id)
     if sire
       self.sire = sire
     else
@@ -44,7 +47,8 @@ class Animal < ActiveRecord::Base
 
   def add_dam(reg_id)
     return if reg_id.blank?
-    dam = Animal.find_by(registration_id: reg_id)
+    id = id_from_reg_id(reg_id)
+    dam = Animal.find_by(id: id)
     if dam
       self.dam = dam
     else
@@ -53,6 +57,10 @@ class Animal < ActiveRecord::Base
   end
 
   private
+
+  def gender_abbreviation
+    gender == 'Male' ? 'R' : 'F'
+  end
 
   def sire_is_male
     errors.add(:sire, 'cannot be female') if sire && sire.gender == 'Female'
@@ -68,5 +76,9 @@ class Animal < ActiveRecord::Base
 
   def existence_of_dam
     errors.add(:dam, 'does not exist') if @dam_not_exist
+  end
+
+  def id_from_reg_id(reg_id)
+    reg_id.gsub(/[^0-9]/, '')
   end
 end
