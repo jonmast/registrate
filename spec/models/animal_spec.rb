@@ -55,11 +55,6 @@ RSpec.describe Animal do
       sheep.percentage = 101
       expect(sheep).to_not be_valid
     end
-
-    it 'requires registration_id to be unique' do
-      FactoryGirl.create(:animal, registration_id: sheep.registration_id)
-      expect(sheep).to_not be_valid
-    end
   end
 
   describe '#add_sire' do
