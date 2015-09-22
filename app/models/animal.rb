@@ -18,7 +18,8 @@ class Animal < ActiveRecord::Base
             :embryo_transfer,
             :percentage,
             presence: true
-  validates :percentage, inclusion: (0..100)
+  validates :registration_id, uniqueness: true
+  validates :percentage, inclusion: (1..100)
 
   def progeny
     if gender == 'Male'
