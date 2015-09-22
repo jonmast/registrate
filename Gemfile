@@ -5,6 +5,7 @@ gem 'pg'
 
 gem 'slim-rails'
 gem 'simple_form'
+gem 'devise'
 
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'

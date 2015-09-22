@@ -12,4 +12,9 @@ html
         form.navbar-form.navbar-right[role="search"]
           .form-group
             input.form-control[type="text" placeholder="Search"]
-    .container= yield
+    .container
+      - if notice
+        .alert.alert-info= notice
+      - if alert
+        .alert.alert-warning= alert
+      = yield
