@@ -25,6 +25,7 @@ class AnimalsController < ApplicationController
                                    :birth_type,
                                    :percentage,
                                    :embryo_transfer,
+                                   :artificial_insemination,
                                    :gender)
   end
 end
