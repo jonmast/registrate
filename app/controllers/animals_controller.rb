@@ -2,4 +2,30 @@ class AnimalsController < ApplicationController
   def show
     @animal = Animal.find(params[:id])
   end
+
+  def new
+    @animal = Animal.new
+  end
+
+  def create
+    @animal = Animal.new(animal_params)
+    @animal.add_sire(params[:animal][:sire])
+    @animal.add_dam(params[:animal][:dam])
+    @animal.generate_id
+    if @animal.save
+      redirect_to animal_path(@animal)
+    else
+      render 'new'
+    end
+  end
+
+  private
+
+  def animal_params
+    params.require(:animal).permit(:birth_date,
+                                   :birth_type,
+                                   :percentage,
+                                   :embryo_transfer,
+                                   :gender)
+  end
 end

@@ -61,4 +61,21 @@ RSpec.describe Animal do
       expect(sheep).to_not be_valid
     end
   end
+
+  describe '#add_sire' do
+    it 'allows setting sire from registration_id' do
+      sire = FactoryGirl.create(:ram)
+      sheep = FactoryGirl.build(:animal)
+      sheep.add_sire(sire.registration_id)
+      expect(sheep.sire).to eq sire
+      expect(sheep).to be_valid
+    end
+
+    it 'is invalid if sire does not exist' do
+      sheep = FactoryGirl.build(:animal)
+      sheep.add_sire('<<invalid>>')
+      expect(sheep.sire).to be_nil
+      expect(sheep).to_not be_valid
+    end
+  end
 end
