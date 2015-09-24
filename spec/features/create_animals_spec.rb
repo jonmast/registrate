@@ -12,6 +12,7 @@ RSpec.feature 'CreateAnimals' do
     fill_in 'Sire', with: FactoryGirl.create(:ram).registration_id
     fill_in 'Dam', with: FactoryGirl.create(:ewe).registration_id
     select 'Male', from: 'Gender'
+    select 'Fullblood', from: 'Registration type'
     expect { click_button 'Submit' }.to change { Animal.count }
     within('#attributes') do
       expect(page).to have_content('Male')

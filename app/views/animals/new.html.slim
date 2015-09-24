@@ -4,6 +4,7 @@
   = f.input :birth_type, label: 'Birth type (0 for embryo, 1 for single, 2 for twin, etc.)'
   = f.input :embryo_transfer, as: :select, collection: Animal.embryo_transfers.keys, default: 1
   = f.input :artificial_insemination
+  = f.input :registration_type, as: :select, collection: Animal.registration_types.keys
   = f.input :percentage, label: 'Percentage Dorper'
   = f.input :sire
   = f.input :dam

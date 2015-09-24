@@ -4,6 +4,7 @@ FactoryGirl.define do
     birth_date { Faker::Date.between(10.years.ago, Date.today) }
     gender { %w(M F).sample }
     birth_type { (0..5).to_a.sample }
+    registration_type { %w(F P X).sample }
     artificial_insemination false
     embryo_transfer 'N'
     percentage 100

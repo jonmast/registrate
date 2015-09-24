@@ -9,6 +9,11 @@ class Animal < ActiveRecord::Base
     'Domestic' => 'D',
     'International' => 'I'
   }
+  enum registration_type: {
+    'Fullblood' => 'F',
+    'Purebred' => 'P',
+    'Percentage' => 'X'
+  }
 
   validate :sire_is_male
   validate :dam_is_female
@@ -17,6 +22,7 @@ class Animal < ActiveRecord::Base
             :birth_type,
             :embryo_transfer,
             :percentage,
+            :registration_type,
             presence: true
   validates :percentage, inclusion: (1..100)
   validates :artificial_insemination, inclusion: [true, false]
