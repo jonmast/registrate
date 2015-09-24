@@ -12,6 +12,12 @@ html
         form.navbar-form.navbar-right[role="search"]
           .form-group
             input.form-control[type="text" placeholder="Search"]
+        ul.nav.navbar-nav.navbar-right
+          - if signed_in?
+            li= link_to 'Sign out', destroy_user_session_path
+          - else
+            li= link_to 'Sign in', new_user_session_path
+            li= link_to 'Create account', new_user_registration_path
     .container
       - if notice
         .alert.alert-info= notice

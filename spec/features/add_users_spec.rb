@@ -11,6 +11,16 @@ RSpec.feature 'AddUsers' do
     fill_in 'State', with: 'DC'
     fill_in 'Zip', with: '20500'
     click_button 'Sign up'
-    expect(page).to have_content 'Sign out'
+    expect(page).to have_css('.alert', text: 'confirmation')
+  end
+
+  scenario 'sign in user' do
+    user = FactoryGirl.create(:user)
+    user.confirm
+    visit new_user_session_path
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Sign in'
+    expect(page).to have_link('Sign out', href: destroy_user_session_path)
   end
 end

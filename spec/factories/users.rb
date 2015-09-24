@@ -1,6 +1,8 @@
 FactoryGirl.define do
   factory :user do
     name { Faker::Name.name }
+    password 'supersecret'
+    password_confirmation 'supersecret'
     address1 { Faker::Address.street_address }
     city { Faker::Address.city }
     state { Faker::Address.state_abbr }
