@@ -1,7 +1,12 @@
 require 'rails_helper'
 
 RSpec.feature 'CreateAnimals' do
+  scenario 'require login' do
+    visit new_animal_path
+    expect(current_path).to eq new_user_session_path
+  end
   scenario 'with valid data' do
+    sign_in
     visit new_animal_path
     birth_date = 2.months.ago
     select birth_date.year, from: 'animal_birth_date_1i'
@@ -20,6 +25,7 @@ RSpec.feature 'CreateAnimals' do
   end
 
   scenario 'with invalid data' do
+    sign_in
     visit new_animal_path
     expect { click_button 'Submit' }.to_not change { Animal.count }
     expect(page).to have_content "can't be blank"

@@ -1,4 +1,5 @@
 class AnimalsController < ApplicationController
+  before_action :authenticate_user!, except: [:show]
   def show
     @animal = Animal.find(params[:id])
   end
