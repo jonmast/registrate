@@ -41,7 +41,9 @@ class Animal < ActiveRecord::Base
   end
 
   def registration_id
-    "#{gender_abbreviation}#{registration_type_abbreviation}#{id.to_s.rjust(6, '0')}"
+    gender_abbreviation +
+      registration_type_abbreviation +
+      id.to_s.rjust(6, '0')
   end
 
   def add_sire(reg_id)
