@@ -35,5 +35,7 @@ dl#attributes.dl-horizontal
       - @animal.progeny.each do |prog|
         = link_to prog.registration_id, prog
 
-h2 Ancestry
-#ancestors.tree.clearfix= ancestry_tree(@animal)
+- if @animal.sire || @animal.dam
+  h2 Ancestry
+  #ancestors.tree.center-block
+    ul= ancestry_tree(@animal)
