@@ -2,6 +2,14 @@ dl#attributes.dl-horizontal
   dt Registration Id
   dd= @animal.registration_id
 
+  - if @animal.breeder
+    dt Breeder
+    dd= @animal.breeder.flock_name
+
+  - if @animal.owner
+    dt Owner
+    dd= @animal.owner.flock_name
+
   dt Birth Date
   dd #{@animal.birth_date} (#{age_in_words(@animal.birth_date)} old)
 
