@@ -4,6 +4,7 @@ class Animal < ActiveRecord::Base
   belongs_to :dam, class_name: 'Animal'
   belongs_to :owner, class_name: 'User'
   belongs_to :breeder, class_name: 'User'
+  belongs_to :breeder, class_name: 'User'
 
   enum gender: { 'Male' => 'M', 'Female' => 'F' }
   enum embryo_transfer: {
@@ -40,7 +41,7 @@ class Animal < ActiveRecord::Base
   end
 
   def registration_id
-    "#{gender_abbreviation}#{id.to_s.rjust(6, '0')}"
+    "#{gender_abbreviation}#{registration_type_abbreviation}#{id.to_s.rjust(6, '0')}"
   end
 
   def add_sire(reg_id)
@@ -67,8 +68,12 @@ class Animal < ActiveRecord::Base
 
   private
 
+  def registration_type_abbreviation
+    Animal.registration_types[registration_type]
+  end
+
   def gender_abbreviation
-    gender == 'Male' ? 'R' : 'F'
+    gender == 'Male' ? 'R' : 'E'
   end
 
   def sire_is_male

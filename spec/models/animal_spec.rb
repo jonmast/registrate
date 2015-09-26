@@ -76,8 +76,8 @@ RSpec.describe Animal do
 
   describe '#registration_id' do
     it 'is generated from id' do
-      sheep = FactoryGirl.build(:ram, id: 123)
-      expect(sheep.registration_id).to eq 'R000123'
+      sheep = FactoryGirl.build(:ram, id: 123, registration_type: 'F')
+      expect(sheep.registration_id).to eq 'RF000123'
     end
   end
 end
