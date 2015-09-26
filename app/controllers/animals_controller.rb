@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
   end
 
   def create
-    @animal = Animal.new(animal_params)
+    @animal = current_user.owned_animals.new(animal_params.merge(breeder: current_user))
     @animal.add_sire(params[:animal][:sire])
     @animal.add_dam(params[:animal][:dam])
     if @animal.save

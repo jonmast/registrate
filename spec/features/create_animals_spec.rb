@@ -6,7 +6,7 @@ RSpec.feature 'CreateAnimals' do
     expect(current_path).to eq new_user_session_path
   end
   scenario 'with valid data' do
-    sign_in
+    user = sign_in
     visit new_animal_path
     birth_date = 2.months.ago
     select birth_date.year, from: 'animal_birth_date_1i'
@@ -18,7 +18,8 @@ RSpec.feature 'CreateAnimals' do
     fill_in 'Dam', with: FactoryGirl.create(:ewe).registration_id
     select 'Male', from: 'Gender'
     select 'Fullblood', from: 'Registration type'
-    expect { click_button 'Submit' }.to change { Animal.count }
+    expect { click_button 'Submit' }
+      .to change { user.owned_animals.count }
     within('#attributes') do
       expect(page).to have_content('Male')
     end

@@ -2,6 +2,8 @@ class Animal < ActiveRecord::Base
   belongs_to :customer
   belongs_to :sire, class_name: 'Animal'
   belongs_to :dam, class_name: 'Animal'
+  belongs_to :owner, class_name: 'User'
+  belongs_to :breeder, class_name: 'User'
 
   enum gender: { 'Male' => 'M', 'Female' => 'F' }
   enum embryo_transfer: {
