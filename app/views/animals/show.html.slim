@@ -4,11 +4,11 @@ dl#attributes.dl-horizontal
 
   - if @animal.breeder
     dt Breeder
-    dd= @animal.breeder.flock_name
+    dd= link_to(@animal.breeder.flock_name, user_path(@animal.breeder))
 
   - if @animal.owner
     dt Owner
-    dd= @animal.owner.flock_name
+    dd= link_to(@animal.owner.flock_name, user_path(@animal.owner))
 
   dt Birth Date
   dd #{@animal.birth_date} (#{age_in_words(@animal.birth_date)} old)

@@ -43,4 +43,13 @@ RSpec.feature 'ShowAnimals' do
     end
     expect(page).to_not have_link(current_animal.registration_id, href: animal_path(current_animal))
   end
+
+  scenario 'link to owner' do
+    owner = FactoryGirl.create(:user)
+    animal = FactoryGirl.create(:animal, owner: owner)
+    visit animal_path(animal)
+    within('#attributes') do
+      expect(page).to have_link(owner.flock_name, href: user_path(owner))
+    end
+  end
 end
