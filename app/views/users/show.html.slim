@@ -1,0 +1,22 @@
+dl#attributes.dl-horizontal
+  dt Flock Name
+  dd= @user.flock_name
+
+  dt Contact Name
+  dd= @user.name
+
+  dt Email
+  dd= mail_to(@user.email)
+
+  dt Address
+  dd
+    .address1= @user.address1
+    .address2= @user.address2
+    = @user.city
+    =<> @user.state
+    = @user.zip
+
+h2
+  |Flock - #{pluralize(@user.owned_animals.count, 'animal')}
+  - @user.owned_animals.each do |animal|
+    .animal= link_to(animal.registration_id, animal)
