@@ -9,9 +9,9 @@ html
     nav.navbar.navbar-default
       .container-fluid
         .navbar-header= link_to 'Registrate', '/', class: 'navbar-brand'
-        = simple_form_for :search, url: search_path(:search), method: :get, class: 'navbar-form navbar-right' do |f|
+        = form_for :search, url: search_path, method: :get, html: { class: 'navbar-form navbar-right' } do |f|
           .input-group
-            = f.input :term, placeholder: 'Search'
+            = f.text_field :term, placeholder: 'Search', class: 'form-control'
             .input-group-btn
               button#search.btn.btn-default[type="submit"]
                 i.glyphicon.glyphicon-search
