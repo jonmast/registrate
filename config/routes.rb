@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   resources :animals, only: [:show, :new, :create]
   resources :users, only: [:show]
+  resource :search, only: [:show]
 end

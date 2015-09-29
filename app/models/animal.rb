@@ -32,6 +32,10 @@ class Animal < ActiveRecord::Base
   validate :existence_of_sire
   validate :existence_of_dam
 
+  def self.find_by_registration_id(reg_id)
+    find_by(id: id_from_reg_id(reg_id))
+  end
+
   def progeny
     if gender == 'Male'
       Animal.where(sire: self)
@@ -48,7 +52,7 @@ class Animal < ActiveRecord::Base
 
   def add_sire(reg_id)
     return if reg_id.blank?
-    id = id_from_reg_id(reg_id)
+    id = self.class.id_from_reg_id(reg_id)
     sire = Animal.find_by(id: id)
     if sire
       self.sire = sire
@@ -59,7 +63,7 @@ class Animal < ActiveRecord::Base
 
   def add_dam(reg_id)
     return if reg_id.blank?
-    id = id_from_reg_id(reg_id)
+    id = self.class.id_from_reg_id(reg_id)
     dam = Animal.find_by(id: id)
     if dam
       self.dam = dam
@@ -94,7 +98,7 @@ class Animal < ActiveRecord::Base
     errors.add(:dam, 'does not exist') if @dam_not_exist
   end
 
-  def id_from_reg_id(reg_id)
+  def self.id_from_reg_id(reg_id)
     reg_id.gsub(/[^0-9]/, '')
   end
 end

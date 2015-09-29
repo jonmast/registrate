@@ -9,9 +9,12 @@ html
     nav.navbar.navbar-default
       .container-fluid
         .navbar-header= link_to 'Registrate', '/', class: 'navbar-brand'
-        form.navbar-form.navbar-right[role="search"]
-          .form-group
-            input.form-control[type="text" placeholder="Search"]
+        = simple_form_for :search, url: search_path(:search), method: :get, class: 'navbar-form navbar-right' do |f|
+          .input-group
+            = f.input :term, placeholder: 'Search'
+            .input-group-btn
+              button#search.btn.btn-default[type="submit"]
+                i.glyphicon.glyphicon-search
         ul.nav.navbar-nav.navbar-right
           - if signed_in?
             li= link_to 'Sign out', destroy_user_session_path
