@@ -3,6 +3,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 gem 'pg'
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 gem 'slim-rails'
 gem 'simple_form'

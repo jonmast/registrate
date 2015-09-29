@@ -1,0 +1,7 @@
+h1 Results for #{@search.term}
+- if @search.users.any?
+  - @search.users.each do |user|
+    .user= link_to "#{user.flock_name} (#{user.name})", user_path(id: user.id)
+- else
+  .no-results No results found
+
