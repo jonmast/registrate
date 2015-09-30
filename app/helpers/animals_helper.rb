@@ -27,4 +27,20 @@ module AnimalsHelper
       end
     end
   end
+
+  def multi_birth_name(number)
+    %w(
+      embryo
+      single
+      twin
+      triplet
+      quadruplet
+      quintuplet
+      sextuplet
+      septuplet
+      octuplet
+      nonuplet
+      decaplet
+    )[number]
+  end
 end

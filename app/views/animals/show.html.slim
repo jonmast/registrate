@@ -17,7 +17,7 @@ dl#attributes.dl-horizontal
   dd= @animal.gender
 
   dt Birth Type
-  dd #{@animal[:birth_type]} - #{@animal.birth_type}
+  dd #{@animal.birth_type} - #{multi_birth_name(@animal.birth_type)}
 
   - unless @animal.embryo_transfer == 'None'
     dt Embryo Transfer Type
