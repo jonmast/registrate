@@ -7,6 +7,6 @@
   = f.input :artificial_insemination
   = f.input :registration_type, as: :select, collection: Animal.registration_types.keys
   = f.input :percentage, label: 'Percentage Dorper'
-  = f.input :sire
-  = f.input :dam
+  = f.input :sire, label: 'Sire registration id'
+  = f.input :dam, label: 'Dam registration id'
   = f.submit 'Submit', class: 'btn'
