@@ -8,6 +8,7 @@ FactoryGirl.define do
     artificial_insemination false
     embryo_transfer 'N'
     percentage 100
+    breed { ['Dorper', 'White Dorper'].sample }
 
     factory :ram do
       gender 'M'

@@ -6,7 +6,9 @@ RSpec.describe AnimalsController, type: :controller do
     user = FactoryGirl.create(:user)
     user.confirm
     sign_in user
-    expect { post :create, animal: animal.attributes }.to change { Animal.count }
+    attributes = animal.attributes
+    attributes['breed'] = animal.breed
+    expect { post :create, animal: attributes }.to change { Animal.count }
   end
   it 'does not create animal if not signed in' do
     animal = FactoryGirl.build(:animal)

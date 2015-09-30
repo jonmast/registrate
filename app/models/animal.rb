@@ -22,11 +22,14 @@ class Animal < ActiveRecord::Base
     'Percentage' => 'X'
   }
 
+  enum breed: ['Dorper', 'White Dorper']
+
   validate :sire_is_male
   validate :dam_is_female
   validates :birth_date,
             :gender,
             :birth_type,
+            :breed,
             :embryo_transfer,
             :percentage,
             :registration_type,

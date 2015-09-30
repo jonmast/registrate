@@ -18,6 +18,7 @@ RSpec.feature 'CreateAnimals' do
     fill_in 'Dam', with: FactoryGirl.create(:ewe).registration_id
     select 'Male', from: 'Gender'
     select 'Fullblood', from: 'Registration type'
+    select 'Dorper', from: 'Breed'
     expect { click_button 'Submit' }
       .to change { user.owned_animals.count }
     within('#attributes') do

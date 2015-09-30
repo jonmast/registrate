@@ -1,6 +1,7 @@
 = simple_form_for @animal do |f|
   = f.input :birth_date, as: :date, start_year: Date.today.year - 15, end_year: Date.today.year
   = f.input :gender, as: :select, collection: Animal.genders.keys
+  = f.input :breed, as: :select, collection: Animal.breeds.keys
   = f.input :birth_type, label: 'Birth type (0 for embryo, 1 for single, 2 for twin, etc.)'
   = f.input :embryo_transfer, as: :select, collection: Animal.embryo_transfers.keys, default: 1
   = f.input :artificial_insemination

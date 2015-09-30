@@ -24,6 +24,7 @@ class AnimalsController < ApplicationController
   def animal_params
     params.require(:animal).permit(:birth_date,
                                    :birth_type,
+                                   :breed,
                                    :percentage,
                                    :embryo_transfer,
                                    :artificial_insemination,
