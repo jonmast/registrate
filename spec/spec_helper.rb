@@ -12,6 +12,9 @@ RSpec.configure do |config|
   # Use more verbose output for single file runs
   config.default_formatter = 'doc' if config.files_to_run.one?
 
+  # exclude gems from backtrace
+  config.backtrace_exclusion_patterns << /gems/
+
   # Print the 10 slowest examples
   config.profile_examples = 10
   config.order = :random
