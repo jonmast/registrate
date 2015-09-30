@@ -32,6 +32,7 @@ class Animal < ActiveRecord::Base
             :registration_type,
             presence: true
   validates :percentage, inclusion: (1..100)
+  validates :birth_type, inclusion: (0..10)
   validates :artificial_insemination, inclusion: [true, false]
   validate :existence_of_sire
   validate :existence_of_dam
