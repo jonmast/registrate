@@ -16,6 +16,9 @@ dl#attributes.dl-horizontal
   dt Gender
   dd= @animal.gender
 
+  dt Breed
+  dd= @animal.breed
+
   dt Birth Type
   dd #{@animal.birth_type} - #{multi_birth_name(@animal.birth_type)}
 
@@ -26,7 +29,10 @@ dl#attributes.dl-horizontal
   dt Artificial Insemination
   dd= @animal.artificial_insemination? ? 'yes' : 'no'
 
-  dt Percentage
+  dt Registration Type
+  dd= @animal.registration_type
+
+  dt Percentage Dorper
   dd= number_to_percentage(@animal.percentage, precision: 2, strip_insignificant_zeros: true)
 
   - if @animal.progeny.any?

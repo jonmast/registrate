@@ -6,6 +6,6 @@ ul#animals
   - current_user.owned_animals.each do |animal|
     li
       = link_to animal.registration_id, animal_path(animal)
-      | - #{animal.registration_type} - #{age_in_words(animal.birth_date)} old
+      | - #{animal.registration_type} #{animal.breed}- #{age_in_words(animal.birth_date)} old
 
 = link_to 'Add new animal', new_animal_path, class: 'btn btn-primary'
