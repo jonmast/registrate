@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.2.4'
 gem 'pg'
+gem 'kaminari'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 

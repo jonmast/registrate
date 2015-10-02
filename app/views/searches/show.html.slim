@@ -5,3 +5,5 @@ h1 Results for #{@search.term}
 - else
   .no-results No results found
 
+= paginate(@search.users)
+

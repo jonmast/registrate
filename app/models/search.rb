@@ -4,9 +4,10 @@ class Search
 
   def initialize(options = {})
     self.term = options.fetch(:term, '')
+    @page = options.fetch(:page, 1)
   end
 
   def users
-    @results ||= User.search(term)
+    @results ||= User.search(term).page(@page)
   end
 end
