@@ -2,10 +2,12 @@ h1 Welcome - #{current_user.name}
 
 h2 My Animals:
 
-ul#animals
-  - current_user.owned_animals.each do |animal|
+ul#animals.list-unstyled
+  - @animals.each do |animal|
     li
       = link_to animal.registration_id, animal_path(animal)
-      | - #{animal.registration_type} #{animal.breed}- #{age_in_words(animal.birth_date)} old
+      | - #{animal.registration_type} #{animal.breed} #{animal.gender}- #{age_in_words(animal.birth_date)} old
+
+= paginate(@animals)
 
 = link_to 'Add new animal', new_animal_path, class: 'btn btn-primary'

@@ -18,5 +18,9 @@ dl#attributes.dl-horizontal
 
 h2
   |Flock - #{pluralize(@user.owned_animals.count, 'animal')}
-  - @user.owned_animals.each do |animal|
-    .animal= link_to(animal.registration_id, animal)
+ul#animals.list-unstyled
+  - @animals.each do |animal|
+    li
+      = link_to(animal.registration_id, animal)
+      | - #{animal.registration_type} #{animal.breed} #{animal.gender}- #{age_in_words(animal.birth_date)} old
+= paginate(@animals)
