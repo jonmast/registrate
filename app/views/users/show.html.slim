@@ -1,4 +1,6 @@
 dl#attributes.dl-horizontal
+  h1 Flock Details
+
   dt Flock Name
   dd= @user.flock_name
 
@@ -21,6 +23,6 @@ h2
 ul#animals.list-unstyled
   - @animals.each do |animal|
     li
-      = link_to(animal.registration_id, animal)
-      | - #{animal.registration_type} #{animal.breed} #{animal.gender}- #{age_in_words(animal.birth_date)} old
+      = link_to(animal)
+        |#{animal.registration_id} - #{animal.registration_type} #{animal.breed} #{animal.gender} - #{age_in_words(animal.birth_date)} old
 = paginate(@animals)
