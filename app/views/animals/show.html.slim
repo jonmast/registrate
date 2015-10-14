@@ -3,6 +3,9 @@
 dl#attributes.dl-horizontal
   h1 Animal Details
 
+  -if signed_in? && current_user == @animal.owner
+    button.btn.btn-primary.pull-right(data-toggle="modal" data-target="#transfer-modal") Sell Animal
+
   dt Registration Id
   dd= @animal.registration_id
 
@@ -52,3 +55,13 @@ dl#attributes.dl-horizontal
   h2 Ancestry
   #ancestors.tree.center-block
     ul= ancestry_tree(@animal)
+
+-if signed_in? && current_user == @animal.owner
+  #transfer-modal.modal
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-body
+          = simple_form_for @transfer do |f|
+            = f.hidden_field :animal_id, value: @animal.id
+            = f.input :buyer_id
+            = f.submit 'Transfer', class: 'btn'
