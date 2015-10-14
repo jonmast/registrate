@@ -6,6 +6,9 @@ class UsersController < ApplicationController
   end
 
   def dashboard
-    @animals = current_user.owned_animals.page(params[:page])
+    @animals = current_user
+               .owned_animals
+               .order(birth_date: :desc)
+               .page(params[:page])
   end
 end
