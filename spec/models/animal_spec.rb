@@ -80,4 +80,20 @@ RSpec.describe Animal do
       expect(sheep.registration_id).to eq 'RF000123'
     end
   end
+
+  describe '#transfer_to' do
+    let(:sheep) { FactoryGirl.create(:animal) }
+    let(:user) { FactoryGirl.create(:user) }
+
+    it 'changes the owner' do
+      sheep.transfer_to user
+      expect(sheep.owner).to eq user
+    end
+
+    it 'logs the transfer' do
+      sheep.transfer_to(user)
+      transfer = sheep.transfers.last
+      expect(transfer.buyer).to eq user
+    end
+  end
 end

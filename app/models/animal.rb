@@ -9,6 +9,7 @@ class Animal < ActiveRecord::Base
   belongs_to :owner, class_name: 'User'
   belongs_to :breeder, class_name: 'User'
   belongs_to :breeder, class_name: 'User'
+  has_many :transfers
 
   enum gender: { 'Male' => 'M', 'Female' => 'F' }
   enum embryo_transfer: {
@@ -78,6 +79,11 @@ class Animal < ActiveRecord::Base
     else
       @dam_not_exist = true
     end
+  end
+
+  def transfer_to(buyer)
+    Transfer.create(seller: owner, buyer: buyer, animal: self)
+    update(owner: buyer)
   end
 
   private

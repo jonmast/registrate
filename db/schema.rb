@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150930152639) do
+ActiveRecord::Schema.define(version: 20151014185749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 20150930152639) do
   add_index "animals", ["dam_id"], name: "index_animals_on_dam_id", using: :btree
   add_index "animals", ["owner_id"], name: "index_animals_on_owner_id", using: :btree
   add_index "animals", ["sire_id"], name: "index_animals_on_sire_id", using: :btree
+
+  create_table "transfers", force: :cascade do |t|
+    t.integer  "seller_id"
+    t.integer  "buyer_id"
+    t.integer  "animal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "transfers", ["animal_id"], name: "index_transfers_on_animal_id", using: :btree
+  add_index "transfers", ["buyer_id"], name: "index_transfers_on_buyer_id", using: :btree
+  add_index "transfers", ["seller_id"], name: "index_transfers_on_seller_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -70,4 +82,5 @@ ActiveRecord::Schema.define(version: 20150930152639) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "transfers", "animals"
 end
