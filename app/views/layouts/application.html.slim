@@ -11,12 +11,14 @@ html
         .navbar-header= link_to 'Dorper Registry', '/', class: 'navbar-brand'
         = form_for :search, url: search_path, method: :get, html: { class: 'navbar-form navbar-right' } do |f|
           .input-group
-            = f.text_field :term, placeholder: 'Search', class: 'form-control'
+            = f.text_field :term, placeholder: 'Search members', class: 'form-control'
             .input-group-btn
               button#search.btn.btn-default[type="submit"]
                 i.glyphicon.glyphicon-search
         ul.nav.navbar-nav.navbar-right
           - if signed_in?
+            li= link_to 'Dashboard', root_path
+            li= link_to 'Add animal', new_animal_path
             li= link_to 'Sign out', destroy_user_session_path, method: :delete
           - else
             li= link_to 'Sign in', new_user_session_path
