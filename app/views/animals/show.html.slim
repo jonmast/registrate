@@ -1,4 +1,8 @@
+- content_for(:title)
+  | #{@animal.breed} #{@animal.gender} #{@animal.registration_id} Details
 dl#attributes.dl-horizontal
+  h1 Animal Details
+
   dt Registration Id
   dd= @animal.registration_id
 

@@ -1,14 +1,14 @@
 doctype html
 html
   head
-    title Registrate
+    title= yield(:title).presence || 'Dorper Registry'
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
     nav.navbar.navbar-default
       .container-fluid
-        .navbar-header= link_to 'Registrate', '/', class: 'navbar-brand'
+        .navbar-header= link_to 'Dorper Registry', '/', class: 'navbar-brand'
         = form_for :search, url: search_path, method: :get, html: { class: 'navbar-form navbar-right' } do |f|
           .input-group
             = f.text_field :term, placeholder: 'Search', class: 'form-control'
