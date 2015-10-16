@@ -63,5 +63,5 @@ dl#attributes.dl-horizontal
         .modal-body
           = simple_form_for @transfer do |f|
             = f.hidden_field :animal_id, value: @animal.id
-            = f.input :buyer_id
-            = f.submit 'Transfer', class: 'btn'
+            = f.association :buyer, label_method: ->(user) { "#{user.flock_name} (#{user.name})" }
+            = f.submit 'Transfer', class: 'btn btn-danger'

@@ -6,7 +6,7 @@ RSpec.feature 'Transfers' do
     animal = FactoryGirl.create(:animal, owner: user)
     other_user = FactoryGirl.create(:user)
     visit animal_path(animal)
-    fill_in 'Buyer', with: other_user.id
+    select other_user.name, from: 'Buyer'
     click_button 'Transfer'
     expect(page).to have_content('Success')
     expect(Transfer.count).to eq 1
