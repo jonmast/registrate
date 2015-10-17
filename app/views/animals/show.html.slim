@@ -17,6 +17,17 @@ dl#attributes.dl-horizontal
     dt Owner
     dd= link_to(@animal.owner.flock_name, user_path(@animal.owner))
 
+  - if @animal.transfers.any?
+    dt Purchase History
+    dd
+      ul.list-unstyled
+        - @animal.transfers.each do |transfer|
+          li
+            => link_to transfer.seller.flock_name, transfer.seller
+            | >>
+            =<> link_to transfer.buyer.flock_name, transfer.buyer
+            = transfer.created_at.strftime('%B %e, %Y')
+
   dt Birth Date
   dd #{@animal.birth_date} (#{age_in_words(@animal.birth_date)} old)
 
