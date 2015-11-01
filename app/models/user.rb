@@ -3,6 +3,8 @@ require 'elasticsearch/model'
 class User < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
+  geocoded_by :full_street_address
+  after_validation :geocode
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -19,4 +21,10 @@ class User < ActiveRecord::Base
             :flock_name,
             :email,
             presence: true
+
+  scope :locations, -> { where.not(latitude: nil, longitude: nil).pluck(:name, :latitude, :longitude) }
+
+  def full_street_address
+    [address1, address2, city, state, zip, 'USA'].compact.join(', ')
+  end
 end

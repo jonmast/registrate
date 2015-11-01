@@ -11,4 +11,8 @@ class UsersController < ApplicationController
                .order(birth_date: :desc)
                .page(params[:page])
   end
+
+  def locations
+    render json: User.locations
+  end
 end
