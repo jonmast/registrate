@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
             :email,
             presence: true
 
-  scope :locations, -> { where.not(latitude: nil, longitude: nil).pluck(:name, :latitude, :longitude) }
+  scope :locations, -> { where.not(latitude: nil, longitude: nil).select(:id, :flock_name, :name, :latitude, :longitude) }
 
   def full_street_address
     [address1, address2, city, state, zip, 'USA'].compact.join(', ')
