@@ -59,6 +59,10 @@ class Animal < ActiveRecord::Base
       id.to_s.rjust(6, '0')
   end
 
+  def display_name
+    "#{registration_type} #{breed} #{gender}"
+  end
+
   def add_sire(reg_id)
     return if reg_id.blank?
     id = self.class.id_from_reg_id(reg_id)

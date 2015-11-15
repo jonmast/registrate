@@ -27,4 +27,8 @@ class User < ActiveRecord::Base
   def full_street_address
     [address1, address2, city, state, zip, 'USA'].compact.join(', ')
   end
+
+  def address
+    [address1, address2, [city, state].join(', '), zip].compact.join('\n')
+  end
 end

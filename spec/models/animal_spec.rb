@@ -32,11 +32,11 @@ RSpec.describe Animal do
     let(:sheep) { FactoryGirl.build(:animal) }
 
     it 'requires gender to be M or F' do
-      expect { sheep.gender = 'f' }.to raise_error
+      expect { sheep.gender = 'f' }.to raise_error ArgumentError
     end
 
     it "doesn't allow setting embryo_transfer to z" do
-      expect { sheep.embryo_transfer = 'z' }.to raise_error
+      expect { sheep.embryo_transfer = 'z' }.to raise_error ArgumentError
     end
 
     it 'requires sires to be male' do
@@ -94,6 +94,13 @@ RSpec.describe Animal do
       sheep.transfer_to(user)
       transfer = sheep.transfers.last
       expect(transfer.buyer).to eq user
+    end
+  end
+
+  describe '#display_name' do
+    it 'combines registration type, breed, and gender' do
+      animal = FactoryGirl.build(:animal)
+      expect(animal.display_name).to eq "#{animal.registration_type} #{animal.breed} #{animal.gender}"
     end
   end
 end

@@ -1,0 +1,11 @@
+h1 #{@listing.animal.display_name} - #{number_to_currency(@listing.price)}
+/= image_tag @listing.image.url if @listing.image
+dl
+  dt Description
+  dd= @listing.description
+
+  dt Phone number
+  dd= @listing.phone
+
+  dt Address
+  dd= @listing.address.gsub('\n', '<br />').html_safe

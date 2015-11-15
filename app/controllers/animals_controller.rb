@@ -3,6 +3,7 @@ class AnimalsController < ApplicationController
   def show
     @animal = Animal.find(params[:id])
     @transfer = Transfer.new
+    @listing = Listing.new(animal: @animal)
   end
 
   def new

@@ -4,7 +4,9 @@ dl#attributes.dl-horizontal
   h1 Animal Details
 
   -if signed_in? && current_user == @animal.owner
-    button.btn.btn-primary.pull-right(data-toggle="modal" data-target="#transfer-modal") Sell Animal
+    .btn-toolbar.pull-right
+      button.btn.btn-primary(data-toggle="modal" data-target="#listing-modal") List for Sale
+      button.btn.btn-primary.btn-danger(data-toggle="modal" data-target="#transfer-modal") Transfer Ownership
 
   dt Registration Id
   dd= @animal.registration_id
@@ -68,6 +70,16 @@ dl#attributes.dl-horizontal
     ul= ancestry_tree(@animal)
 
 -if signed_in? && current_user == @animal.owner
+  #listing-modal.modal
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-body
+          = simple_form_for @listing do |f|
+            = f.hidden_field :animal_id
+            = f.input :price
+            = f.input :description
+            = f.submit 'Create Listing', class: 'btn btn-danger'
+
   #transfer-modal.modal
     .modal-dialog(role="document")
       .modal-content
