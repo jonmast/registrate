@@ -3,7 +3,7 @@ require 'elasticsearch/model'
 class Animal < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
-  belongs_to :customer
+
   belongs_to :sire, class_name: 'Animal'
   belongs_to :dam, class_name: 'Animal'
   belongs_to :owner, class_name: 'User'

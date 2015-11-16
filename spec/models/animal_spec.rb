@@ -1,6 +1,43 @@
 require 'rails_helper'
 
 RSpec.describe Animal do
+  describe 'attributes' do
+    %w(
+      birth_date
+      gender
+      birth_type
+      embryo_transfer
+      percentage
+      registration_type
+      breed
+    ).each do |required_attribute|
+      it { is_expected.to validate_presence_of required_attribute }
+    end
+
+    it { is_expected.to validate_inclusion_of(:percentage).in_range(1..100) }
+
+    it { is_expected.to validate_inclusion_of(:birth_type).in_range(0..10) }
+
+    it { is_expected.to define_enum_for(:gender).with('Male' => 'M', 'Female' => 'F') }
+
+    it { is_expected.to define_enum_for(:registration_type).with('Fullblood' => 'F', 'Purebred' => 'P', 'Percentage' => 'X') }
+
+    it { is_expected.to define_enum_for(:breed).with(['Dorper', 'White Dorper']) }
+  end
+
+  describe 'associations' do
+    %w(
+      sire
+      dam
+      owner
+      breeder
+    ).each do |association|
+      it { is_expected.to belong_to association }
+    end
+
+    it { is_expected.to have_many :transfers }
+  end
+
   describe 'sire and dam associations' do
     it 'allows setting a sire' do
       sire = FactoryGirl.create(:animal, gender: 'M')
@@ -8,6 +45,7 @@ RSpec.describe Animal do
       expect(progeny).to be_valid
       expect(progeny.sire).to eq sire
     end
+
     it 'allows setting a dam' do
       dam = FactoryGirl.create(:animal, gender: 'F')
       progeny = FactoryGirl.create(:animal, dam: dam)
