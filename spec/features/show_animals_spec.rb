@@ -21,8 +21,9 @@ RSpec.feature 'ShowAnimals' do
       animal.save!
     end
 
+
     visit animal_path(sire)
-    progeny.each do |animal|
+    sire.progeny.each do |animal|
       expect(page).to have_link(
         animal.registration_id,
         href: animal_path(animal)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151114222630) do
+ActiveRecord::Schema.define(version: 20151116004932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20151114222630) do
     t.integer  "sire_id"
     t.integer  "dam_id"
     t.date     "birth_date",              null: false
-    t.string   "gender",                  null: false
     t.integer  "birth_type",              null: false
     t.boolean  "artificial_insemination", null: false
     t.string   "embryo_transfer",         null: false
@@ -31,6 +30,7 @@ ActiveRecord::Schema.define(version: 20151114222630) do
     t.datetime "updated_at",              null: false
     t.string   "registration_type"
     t.integer  "breed",                   null: false
+    t.string   "type"
   end
 
   add_index "animals", ["breeder_id"], name: "index_animals_on_breeder_id", using: :btree

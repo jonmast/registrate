@@ -2,21 +2,13 @@ require 'faker'
 FactoryGirl.define do
   factory :animal do
     birth_date { Faker::Date.between(10.years.ago, Date.today) }
-    gender { %w(M F).sample }
+    type { %w(MaleAnimal FemaleAnimal).sample }
     birth_type { (0..5).to_a.sample }
     registration_type { %w(F P X).sample }
     artificial_insemination false
     embryo_transfer 'N'
     percentage 100
     breed { ['Dorper', 'White Dorper'].sample }
-
-    factory :ram do
-      gender 'M'
-    end
-
-    factory :ewe do
-      gender 'F'
-    end
 
     factory :animal_with_parents do
       after(:create) { |animal| create_parents_tree(animal, 5) }
