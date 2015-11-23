@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
             :zip,
             :flock_name,
             :email,
+            :phone,
             presence: true
 
   scope :locations, -> { where.not(latitude: nil, longitude: nil).select(:id, :flock_name, :name, :latitude, :longitude) }
