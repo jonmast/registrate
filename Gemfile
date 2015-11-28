@@ -40,6 +40,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'shoulda-matchers'
+  gem 'codecov', require: false
 end
 
 group :production do
