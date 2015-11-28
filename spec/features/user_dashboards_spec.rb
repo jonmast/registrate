@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.feature 'UserDashboards' do
   scenario 'show dashboard upon signing in' do
     user = sign_in
-    owned_animal = FactoryGirl.create(:animal, owner: user)
-    bred_animal = FactoryGirl.create(:animal, breeder: user)
+    owned_animal = FactoryGirl.create(:male_animal, owner: user)
+    bred_animal = FactoryGirl.create(:female_animal, breeder: user)
     visit root_path
     expect(page).to have_content user.name
     expect(page).to have_link owned_animal.registration_id, href: animal_path(owned_animal)

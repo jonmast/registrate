@@ -12,6 +12,7 @@ RSpec.feature 'AddUsers' do
     fill_in 'Zip', with: '20500'
     fill_in 'Flock name', with: 'Toadstool Ranch'
     fill_in 'Name', with: 'John Doe'
+    fill_in 'Phone', with: '1234567890'
     click_button 'Sign up'
     expect(page).to have_css('.alert', text: 'confirmation')
   end

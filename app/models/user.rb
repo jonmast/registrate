@@ -4,7 +4,8 @@ class User < ActiveRecord::Base
   include Elasticsearch::Model
   include Elasticsearch::Model::Callbacks
   geocoded_by :full_street_address
-  after_validation :geocode
+
+  after_validation :geocode unless Rails.env.test?
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -20,6 +21,7 @@ class User < ActiveRecord::Base
             :zip,
             :flock_name,
             :email,
+            :phone,
             presence: true
 
   scope :locations, -> { where.not(latitude: nil, longitude: nil).select(:id, :flock_name, :name, :latitude, :longitude) }

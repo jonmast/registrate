@@ -12,7 +12,9 @@ class ApplicationController < ActionController::Base
       :state,
       :zip,
       :flock_name,
-      :name
+      :name,
+      :phone,
+      :fax
     ]
   end
 end
