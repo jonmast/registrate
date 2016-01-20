@@ -18,7 +18,7 @@ RSpec.describe Animal do
 
     it { is_expected.to validate_inclusion_of(:birth_type).in_range(0..10) }
 
-    it { is_expected.to define_enum_for(:registration_type).with('Fullblood' => 'F', 'Purebred' => 'P', 'Percentage' => 'X') }
+    it { is_expected.to define_enum_for(:registration_type).with('Fullblood' => 0, 'Purebred' => 1, 'Percentage' => 2) }
 
     it { is_expected.to define_enum_for(:breed).with(['Dorper', 'White Dorper']) }
   end
@@ -87,7 +87,7 @@ RSpec.describe Animal do
 
   describe '#registration_id' do
     it 'is generated from id' do
-      sheep = FactoryGirl.build(:ram, id: 123, registration_type: 'F')
+      sheep = FactoryGirl.build(:ram, id: 123, registration_type: 'Fullblood')
       expect(sheep.registration_id).to eq 'RF000123'
     end
   end

@@ -16,11 +16,11 @@ class Animal < ActiveRecord::Base
     'Domestic' => 'D',
     'International' => 'I'
   }
-  enum registration_type: {
-    'Fullblood' => 'F',
-    'Purebred' => 'P',
-    'Percentage' => 'X'
-  }
+  enum registration_type: [
+    'Fullblood',
+    'Purebred',
+    'Percentage'
+  ]
 
   enum breed: ['Dorper', 'White Dorper']
 
@@ -111,8 +111,16 @@ class Animal < ActiveRecord::Base
 
   private
 
+  def registration_type_abbreviations
+    {
+      'Fullblood' => 'F',
+      'Purebred' => 'P',
+      'Percentage' => 'X'
+    } 
+  end
+
   def registration_type_abbreviation
-    Animal.registration_types[registration_type]
+    registration_type_abbreviations[registration_type]
   end
 
   def gender_abbreviation

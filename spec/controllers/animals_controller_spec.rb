@@ -9,6 +9,7 @@ RSpec.describe AnimalsController, type: :controller do
     attributes = animal.attributes
     attributes['breed'] = animal.breed
     attributes['gender'] = animal.gender
+    attributes['registration_type'] = animal.registration_type
     expect { post :create, animal: attributes }.to change { Animal.count }
   end
   it 'does not create animal if not signed in' do
