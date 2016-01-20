@@ -15,4 +15,12 @@ RSpec.feature 'Listings', type: :feature do
 
     expect(page).to have_css(:h1, text: '$450')
   end
+
+  scenario 'user visits all listings page' do
+    listing = FactoryGirl.create(:listing)
+
+    visit listings_path
+
+    expect(page).to have_content(listing.animal.display_name)
+  end
 end

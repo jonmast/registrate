@@ -10,6 +10,6 @@ Rails.application.routes.draw do
     get 'locations', on: :collection
   end
   resources :transfers, only: [:create]
-  resources :listings, only: [:create, :show]
+  resources :listings, only: [:create, :show, :index]
   resource :search, only: [:show]
 end

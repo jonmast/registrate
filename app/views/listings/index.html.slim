@@ -1,0 +1,6 @@
+ul.listings.list-unstyled
+  - @listings.each do |listing|
+    li
+      h2= link_to "#{listing.animal.display_name} - #{number_to_currency(listing.price)}", listing
+
+= paginate @listings

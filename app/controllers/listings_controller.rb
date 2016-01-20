@@ -1,4 +1,8 @@
 class ListingsController < ApplicationController
+  def index
+    @listings = Listing.all.page(params[:page])
+  end
+
   def create
     @listing = Listing.create(listing_params)
     redirect_to @listing
